@@ -14,14 +14,15 @@ class Post extends Model
     protected $guarded = [];
     protected $dates = ['deleted_at'];
 
-    public function setSlugAttribute($value)
+    public function setTitleAttribute($value)
     {
-        $this->attributes['slug'] = time() .'-'.str::slug($this->attributes['title']);
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = str::slug(str::random(5) .''.$this->attributes['title']);
     }
 
     public function author()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id');
     }
 
     public function tags()

@@ -21,20 +21,10 @@ class ImageFactory extends Factory
      */
     public function definition()
     {
-        $rand = $this->faker->unique()->numberBetween(1,2000);
-        if ($rand<50) {
-            $type = $this->faker->randomElement(['App\Models\Category','App\Models\Post']);
-        }else{
-            $type = 'App\Models\Category';
-        }
-
         return [
             'title' => $this->faker->word,
-            'alt' => $this->faker->word,
+            'alt' => $this->faker->sentence(3),
             'path' => $this->faker->imageUrl(),
-            'imageable_id' =>$rand,
-            'imageable_type' => $type
-
         ];
     }
 }

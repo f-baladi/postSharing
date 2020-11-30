@@ -22,13 +22,8 @@ class CategoryFactory extends Factory
      */
     public function definition()
     {
-        for($i=0;$i<50;$i++)
-        {
             return [
-                'title'=>'category'.$i,
-                'slug' => time() .'-'.str::slug('title'),
+                'title' => $this->faker->word(),
             ];
-        }
-
     }
 }

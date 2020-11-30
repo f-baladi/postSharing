@@ -17,8 +17,9 @@ class Category extends Model
         return $this->belongsToMany(Post::class);
     }
 
-    public function setSlugAttribute($value)
+    public function setTitleAttribute($value)
     {
-        $this->attributes['slug'] = time() .'-'.str::slug($this->attributes['title']);
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = str::slug(str::random(5) .''.$this->attributes['title']);
     }
 }

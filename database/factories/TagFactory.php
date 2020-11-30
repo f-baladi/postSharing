@@ -22,12 +22,8 @@ class TagFactory extends Factory
      */
     public function definition()
     {
-        for($i=0;$i<100;$i++)
-        {
             return [
-                'title'=>'tag'.$i,
-                'slug' => time() .'-'.str::slug('title'),
+                'title' => $this->faker->word(),
             ];
-        }
     }
 }
