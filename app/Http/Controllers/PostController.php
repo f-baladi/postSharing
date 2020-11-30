@@ -15,7 +15,6 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with(['tags','categories','image','author'])->get();
-//        dd($posts->all());
         return view('post.index',compact('posts'));
     }
 
