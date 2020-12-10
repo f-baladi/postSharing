@@ -22,3 +22,8 @@ Route::resource('post', 'PostController');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::post('/checkMobile', 'Auth\LoginController@checkMobile')->name('check.mobile');
+Route::get('/insertMobile', 'Auth\LoginController@showLoginForm');
+Route::post('/verifyMobile', 'Auth\LoginController@verifyMobile')->name('verify.mobile');
+Route::get('/verifyMobile', 'Auth\LoginController@showVerifyForm');

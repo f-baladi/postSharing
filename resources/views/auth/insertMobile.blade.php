@@ -8,16 +8,16 @@
                     <div class="card-header">{{ __('وارد کردن شماره همراه') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ route('check.mobile') }}">
                             @csrf
 
                             <div class="form-group row">
-                                <label for="phone_number" class="col-md-2 col-form-label text-md-right">{{ __('شماره همراه') }}</label>
+                                <label for="mobile" class="col-md-2 col-form-label text-md-right">{{ __('شماره همراه') }}</label>
 
                                 <div class="col-md-6">
-                                    <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" required autocomplete="phone_number" autofocus>
+                                    <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile" autofocus>
 
-                                    @error('phone_number')
+                                    @error('mobile')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

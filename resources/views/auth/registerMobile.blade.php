@@ -29,16 +29,8 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-2 col-form-label text-md-right">{{ __('موبایل:') }}</label>
-                            <div class="col-md-6">
-                                <input id="mobile" type="text" class="form-control @error('mobile') is-invalid @enderror" name="mobile"
-                                       value="{{  old('mobile') }}">
-                                @error('mobile')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                                <input id="mobile" type="hidden" class="form-control " name="mobile"
+                                       value="{{\Illuminate\Support\Facades\Cache::get('mobile')}}">
                         </div>
 
                         <div class="form-group row">
