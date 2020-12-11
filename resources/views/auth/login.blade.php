@@ -11,22 +11,6 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 
-{{--                        <div class="form-group row">--}}
-{{--                            <label for="mobile" class="col-md-2 col-form-label text-md-right">{{ __('شماره همراه') }}</label>--}}
-
-{{--                            <div class="col-md-6">--}}
-{{--                                <input id="mobile" type="text" class="form-control--}}
-{{--                                @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}"--}}
-{{--                                       required autocomplete="mobile" autofocus>--}}
-
-{{--                                @error('mobile')--}}
-{{--                                    <span class="invalid-feedback" role="alert">--}}
-{{--                                        <strong>{{ $message }}</strong>--}}
-{{--                                    </span>--}}
-{{--                                @enderror--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-
                         <div class="form-group row">
                             <label for="email" class="col-md-2 col-form-label text-md-right">{{ __('ایمیل') }}</label>
 

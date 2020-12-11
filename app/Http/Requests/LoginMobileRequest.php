@@ -24,7 +24,7 @@ class LoginMobileRequest extends FormRequest
     public function rules()
     {
         return [
-            'mobile' => ['required','regex:/(09)[0-9]{9}/' ,'unique:users','min:11','max:11'],
+            'mobile' => ['required','regex:/(09)[0-9]{9}/','min:11','max:11'],
         ];
     }
 }
