@@ -3,20 +3,25 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12">
+            <div class="col-md-12 " style="text-align: center">
+
+                @if(session('status'))
+                    <div class="alert alert-success">{{session('status')}}</div>
+                @endif
+
                 <div class="card ">
-                    <div class="card-header bg-light">{{ __('Posts') }}</div>
+                    <div class="card-header bg-light">{{ __('پست ها') }}</div>
 
                     <div class="card-body">
                         <table class="table table-bordered table-hover">
                             <thead class="bg-info">
-                            <th>{{'id'}}</th>
-                            <th>{{'title'}}</th>
+                            <th>{{'شناسه'}}</th>
+                            <th>{{'عنوان'}}</th>
                             <th>{{'slug'}}</th>
-                            <th>{{'author'}}</th>
-                            <th>{{'categories'}}</th>
-                            <th>{{'tags'}}</th>
-                            <th>{{'operations'}}</th>
+                            <th>{{'نویسنده'}}</th>
+                            <th>{{'دسته بندی ها'}}</th>
+                            <th>{{'تگ ها'}}</th>
+                            <th>{{'عملیات'}}</th>
                             </thead>
                             @foreach($posts as $post)
                                 <tbody>
@@ -33,15 +38,20 @@
                                     @foreach($post->tags as $tag)
                                         <span class="badge badge-success">{{$tag->title}}</span>
                                     @endforeach
-                                 </td>
+                                </td>
                                 <td class="col-2">
-                                    <a class="btn btn-primary" href="{{route('post.show',$post->id)}}">Show</a>
-                                    <a class="btn btn-danger" href="{{route('post.destroy',$post->id)}}">Delete</a>
+                                    <a class="btn btn-primary" href="{{route('post.show',$post->id)}}">نمایش</a>
+                                    <a class="btn btn-danger" href="{{route('post.destroy',$post->id)}}">حذف</a>
                                 </td>
 
                                 </tbody>
                             @endforeach
                         </table>
+                        <div>
+
+                            {{$posts->links('pagination::bootstrap-4')}}
+
+                        </div>
                     </div>
                 </div>
             </div>

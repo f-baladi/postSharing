@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    $posts = Post::with(['tags','categories','image','author'])->Paginate(7);
+    return view('welcome',compact('posts'));
+})->name('welcome');
 
 Route::resource('post', 'PostController');
 
@@ -23,7 +25,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::post('/checkMobile', 'Auth\LoginController@checkMobile')->name('check.mobile');
+Route::post('/checkMobile', 'Auth\MobileVerificationController@checkMobile')->name('check.mobile');
 Route::get('/insertMobile', 'Auth\LoginController@showLoginForm');
-Route::post('/verifyMobile', 'Auth\LoginController@verifyMobile')->name('verify.mobile');
-Route::get('/verifyMobile', 'Auth\LoginController@showVerifyForm');
+Route::post('/verifyMobile', 'Auth\MobileVerificationControllerr@verifyMobile')->name('verify.mobile');
+Route::get('/verifyMobile', 'Auth\MobileVerificationController@showVerifyForm');
