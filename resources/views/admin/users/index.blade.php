@@ -4,6 +4,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
+                @if(session('message'))
+                    <div class="alert alert-success">{{session('message')}}</div>
+                @endif
                 <div class="card ">
                     <div class="card-header bg-light">{{ __('لیست کاربران') }}</div>
 
@@ -14,17 +17,17 @@
                             <th>{{'نام'}}</th>
                             <th>{{'ایمیل'}}</th>
                             <th>{{'موبایل'}}</th>
-                            <th>{{'وضعیت فعالیت'}}</th>
+                            <th>{{'وضعیت'}}</th>
                             <th>{{'عملیات'}}</th>
                             </thead>
                             @foreach($users as $user)
                                 <tbody>
                                 <td>{{$user->id}}</td>
-                                <td>{{$user->name}}</td>
+                                <td><a style="color: black" href="{{route('admin.users.show',$user)}}">{{$user->name}}</a></td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->mobile}}</td>
                                 <td id="activity">{{$user->isActive ? 'فعال' : 'غیرفعال'}}</td>
-                                <td class="col-2">
+                                <td class="d-flex flex-row">
 {{--                                    <button class="btn btn-warning" onclick="activityUser()">تغییر وضعیت</button>--}}
                                     <form action="{{route('admin.users.activity',$user)}}" method="post" >
                                         @csrf
