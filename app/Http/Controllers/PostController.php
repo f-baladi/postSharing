@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -14,7 +15,6 @@ class PostController extends Controller
      */
     public function index()
     {
-//        $tasks = auth()->user()->tasks()->latest()->get();
         $posts = auth()->user()->posts()->with(['tags','categories','author'])->paginate(5);
         return view('post.index',compact('posts'));
     }
@@ -48,7 +48,13 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        if ($post->user_id == Auth::user()->id)
+        {
+            return view('post.show', compact('post'));
+        } else
+            {
+            return redirect()->route('post.index')->with('status','شما اجازه دسترسی به این پست را ندارید.');
+        }
     }
 
     /**

@@ -65,8 +65,8 @@
 {{--                'url': '{{route('admin.users.activity',$user)}}',--}}
 {{--                success: function (response) {--}}
 {{--                    console.log(response)--}}
-{{--                    // if (response.success)--}}
-{{--                    //     $('#activity').html(response.data.isActive ? 'فعال' : 'غیرفعال');--}}
+{{--                    if (response.success)--}}
+{{--                        $('#activity').html(response.data.isActive ? 'فعال' : 'غیرفعال');--}}
 {{--                }--}}
 {{--            })--}}
 {{--        }--}}

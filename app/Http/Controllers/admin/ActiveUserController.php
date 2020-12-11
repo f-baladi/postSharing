@@ -23,11 +23,11 @@ class ActiveUserController extends Controller
 
 //        dd($user);
 
-        return redirect()->route('admin.users.index');
+//        return redirect()->route('admin.users.index');
 
-//        return response()->json([
-//            'success' => true,
-//            'data' => $user->toArray()
-//        ]);
+        return response()->json([
+            'success' => true,
+            'data' => $user->toArray()
+        ]);
     }
 }

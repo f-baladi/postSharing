@@ -3,13 +3,13 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-12 " style="text-align: center">
+            <div class="col-md-12 " >
 
                 @if(session('status'))
-                    <div class="alert alert-success">{{session('status')}}</div>
+                    <div class="alert alert-info">{{session('status')}}</div>
                 @endif
 
-                <div class="card ">
+                <div class="card " style="text-align: center">
                     <div class="card-header bg-light">{{ __('پست ها') }}</div>
 
                     <div class="card-body">
@@ -39,8 +39,9 @@
                                         <span class="badge badge-success">{{$tag->title}}</span>
                                     @endforeach
                                 </td>
-                                <td class="col-2">
+                                <td class="d-flex flex-row">
                                     <a class="btn btn-primary" href="{{route('post.show',$post->id)}}">نمایش</a>
+                                    <span class="m-1"></span>
                                     <a class="btn btn-danger" href="{{route('post.destroy',$post->id)}}">حذف</a>
                                 </td>
 

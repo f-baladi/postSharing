@@ -10,6 +10,7 @@ use App\Models\PostTag;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -21,18 +22,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::find(25);
+        $user = User::create(['name' => 'فرشید', 'email' => 'f.baladi2689@gmail.com',
+            'mobile' => '09166199999', 'password'=>  Hash::make('12345678')]);
         $role = Role::create(['name'=>'admin']);
         $user->assignRole($role);
-//        User::factory(20)->create();
-//        $categories = Category::factory(50)->create()->each(function ($category){
-//            Image::factory()->create(['imageable_type' => "App\Models\Category", 'imageable_id'=>$category->id]);
-//        });
-//        $tags = Tag::factory(100)->create();
-//        Post::factory(2000)->create()->each(function ($post) use ($tags, $categories) {
-//            $post->tags()->attach($tags->random(rand(3, 10)));
-//            $post->categories()->attach($categories->random(rand(1, 5)));
-//            Image::factory()->create(['imageable_type' => "App\Models\Post", 'imageable_id'=>$post->id]);
-//        });
+
+        User::factory(20)->create();
+        $categories = Category::factory(50)->create()->each(function ($category){
+            Image::factory()->create(['imageable_type' => "App\Models\Category", 'imageable_id'=>$category->id]);
+        });
+        $tags = Tag::factory(100)->create();
+        Post::factory(2000)->create()->each(function ($post) use ($tags, $categories) {
+            $post->tags()->attach($tags->random(rand(3, 10)));
+            $post->categories()->attach($categories->random(rand(1, 5)));
+            Image::factory()->create(['imageable_type' => "App\Models\Post", 'imageable_id'=>$post->id]);
+        });
     }
 }
