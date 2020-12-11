@@ -14,7 +14,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['tags','categories','author'])->paginate(7);
+//        $tasks = auth()->user()->tasks()->latest()->get();
+        $posts = auth()->user()->posts()->with(['tags','categories','author'])->paginate(5);
         return view('post.index',compact('posts'));
     }
 

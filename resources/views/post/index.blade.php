@@ -47,7 +47,7 @@
                                 </tbody>
                             @endforeach
                         </table>
-                        <div>
+                        <div dir="ltr">
 
                             {{$posts->links('pagination::bootstrap-4')}}
 
