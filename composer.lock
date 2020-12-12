@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "64a65f6fbe05e944ae06b578387c4380",
+    "content-hash": "c3d0bd637a8898bcb61bf20f5f592676",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -839,6 +839,56 @@
                 "url"
             ],
             "time": "2020-09-30T07:37:11+00:00"
+        },
+        {
+            "name": "hatamiarash7/persian-faker",
+            "version": "v1.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hatamiarash7/Laravel-PersianFaker.git",
+                "reference": "4e14cab8f7296ca45990b8c7d3fef105ccc3a922"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hatamiarash7/Laravel-PersianFaker/zipball/4e14cab8f7296ca45990b8c7d3fef105ccc3a922",
+                "reference": "4e14cab8f7296ca45990b8c7d3fef105ccc3a922",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Hatamiarash7\\PFaker\\PFakerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hatamiarash7\\PFaker\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Arash Hatami",
+                    "email": "hatamiarash7@gmail.com",
+                    "homepage": "https://github.com/hatamiarash7"
+                }
+            ],
+            "description": "Persian faker for laravel",
+            "keywords": [
+                "faker",
+                "farsi",
+                "laravel",
+                "persian"
+            ],
+            "time": "2019-12-06T09:37:15+00:00"
         },
         {
             "name": "laravel/framework",
@@ -4672,6 +4722,39 @@
                 "validate"
             ],
             "time": "2020-07-08T17:02:28+00:00"
+        },
+        {
+            "name": "ybazli/faker",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Ybazli/faker.git",
+                "reference": "8ed1b8a5a658e2bb028f62eb6186e534a7972448"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Ybazli/faker/zipball/8ed1b8a5a658e2bb028f62eb6186e534a7972448",
+                "reference": "8ed1b8a5a658e2bb028f62eb6186e534a7972448",
+                "shasum": ""
+            },
+            "type": "laravel",
+            "autoload": {
+                "psr-4": {
+                    "Ybazli\\Faker\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "ybazli",
+                    "email": "Yashar.bazli@gmail.com"
+                }
+            ],
+            "description": "Persian fake data package for laravel",
+            "time": "2018-02-22T14:29:51+00:00"
         }
     ],
     "packages-dev": [

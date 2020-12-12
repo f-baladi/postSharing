@@ -53,6 +53,5 @@ class MobileVerificationController extends Controller
             return view('auth.registerMobile')->with('message','لطفا سایر اطلاعات خود را تکمیل کنید');
 
         }
-//        cache::forget($mobile);
     }
 }
