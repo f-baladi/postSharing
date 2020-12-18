@@ -20,7 +20,12 @@ Route::get('/', function () {
     return view('welcome',compact('posts'));
 })->name('welcome');
 
-Route::resource('post', 'PostController');
+Route::group([
+    'middleware'=> 'auth'
+],function (){
+    Route::resource('posts', 'PostController');
+    Route::resource('tags', 'TagController');
+});
 
 Auth::routes();
 

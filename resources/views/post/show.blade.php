@@ -33,7 +33,7 @@
                         </div>
 
                         <div class="mb-4 d-flex align-items-center justify-content-between" dir="ltr">
-                                <a class="btn btn-info" href="{{route('post.index')}}">{{ __('بازگشت') }}</a>
+                                <a class="btn btn-info" href="{{route('posts.index')}}">{{ __('بازگشت') }}</a>
                             <div>
                                 @if ($post->status)
                                     <a class="btn btn-info" href="{{route('post.draft', $post)}}">{{ __('تبدیل به پیش نویس') }}</a>

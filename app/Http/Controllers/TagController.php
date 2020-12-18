@@ -14,7 +14,8 @@ class TagController extends Controller
      */
     public function index()
     {
-        //
+        $tags = Tag::paginate(5);
+        return view('tag.index',compact('tags'));
     }
 
     /**
@@ -46,7 +47,8 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+        $posts = $tag->posts()->paginate(5);
+        return view('tag.show',compact('posts'));
     }
 
     /**

@@ -48,13 +48,12 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if (!auth()->check())
-            return view('viewer.show', compact('post'));
-
-        elseif ($post->user_id == Auth::user()->id)
+        if ($post->user_id == Auth::user()->id)
         {
             return view('post.show', compact('post'));
         }
+        else
+            return view('viewer.show', compact('post'));
     }
 
     /**
