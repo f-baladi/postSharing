@@ -29,3 +29,6 @@ Route::post('/checkMobile', 'Auth\MobileVerificationController@checkMobile')->na
 Route::get('/insertMobile', 'Auth\LoginController@showLoginForm');
 Route::post('/verifyMobile', 'Auth\MobileVerificationControllerr@verifyMobile')->name('verify.mobile');
 Route::get('/verifyMobile', 'Auth\MobileVerificationController@showVerifyForm');
+
+Route::get('post/{post}/publish' , 'PublishPostController@publish')->name('post.publish');
+Route::get('post/{post}/draft' , 'PublishPostController@draft')->name('post.draft');

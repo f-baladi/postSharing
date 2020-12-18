@@ -5,6 +5,11 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
+
+                    @if(session('status'))
+                        <div class="alert alert-info">{{session('status')}}</div>
+                    @endif
+
                     <div class="card-header badge-success">{{ $post->title }}</div>
 
                     <div class="card-body">
@@ -27,8 +32,15 @@
                             <p class="card-text">{{$post->categories->implode('title' , '، ')}}</p>
                         </div>
 
-                        <div class="form-group row mb-2 " dir="ltr">
+                        <div class="mb-4 d-flex align-items-center justify-content-between" dir="ltr">
                                 <a class="btn btn-info" href="{{route('post.index')}}">{{ __('بازگشت') }}</a>
+                            <div>
+                                @if ($post->status)
+                                    <a class="btn btn-info" href="{{route('post.draft', $post)}}">{{ __('تبدیل به پیش نویس') }}</a>
+                                @else
+                                    <a class="btn btn-success" href="{{route('post.publish',$post)}}">{{ __('تبدیل به انتشار') }}</a>
+                                @endif
+                            </div>
                         </div>
                     </div>
                 </div>
