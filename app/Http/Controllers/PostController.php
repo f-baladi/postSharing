@@ -48,12 +48,12 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if ($post->user_id == Auth::user()->id)
+        if (!auth()->check())
+            return view('viewer.show', compact('post'));
+
+        elseif ($post->user_id == Auth::user()->id)
         {
             return view('post.show', compact('post'));
-        } else
-            {
-            return redirect()->route('post.index')->with('status','شما اجازه دسترسی به این پست را ندارید.');
         }
     }
 

@@ -15,7 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $posts = Post::with(['tags','categories','image','author'])->Paginate(7);
+    $posts = Post::with(['tags','categories','author'])
+        ->where('status',1)->Paginate(7);
     return view('welcome',compact('posts'));
 })->name('welcome');
 
