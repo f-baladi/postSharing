@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateTagRequest;
+use App\Http\Requests\UpdateTagRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
@@ -25,7 +28,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('tag.create');
     }
 
     /**
@@ -34,9 +37,13 @@ class TagController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateTagRequest $request)
     {
-        //
+        $tag = Tag::create([
+            'user_id' => auth()->user()->id,
+            'title' => $request->title,
+        ]);
+        return redirect()->route('tags.myTags')->with('status', 'تگ با موفقیت اضافه شد.');
     }
 
     /**
@@ -59,7 +66,11 @@ class TagController extends Controller
      */
     public function edit(Tag $tag)
     {
-        //
+        if ($tag->user_id != Auth::id())
+            return redirect()->back()->with('status', 'شما اجازه دسترسی یه این صفحه را ندارید');
+
+        else
+        return view('tag.edit', compact( 'tag'));
     }
 
     /**
@@ -69,9 +80,16 @@ class TagController extends Controller
      * @param  \App\Models\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update(UpdateTagRequest $request, Tag $tag)
     {
-        //
+        if ($tag->user_id != Auth::id())
+            return redirect()->back()->with('status', 'شما اجازه دسترسی یه این صفحه را ندارید');
+
+        $tag->update($request->validated());
+
+        return redirect()->action('TagController@myTags')
+            ->With('status', 'تگ با موفقیت بروزرسانی شد.');
+
     }
 
     /**
@@ -82,6 +100,16 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        if ($tag->user_id != Auth::id())
+            return redirect()->back()->with('status', 'شما اجازه دسترسی یه این صفحه را ندارید');
+
+        $tag->delete();
+        return redirect()->back()->with('status', 'تگ با موفقیت حذف شد.');
+    }
+
+    public function myTags()
+    {
+        $tags = auth()->user()->tags()->paginate(5);
+        return view('tag.myTags', compact('tags'));
     }
 }

@@ -26,6 +26,7 @@ Route::group([
     Route::resource('posts', 'PostController');
     Route::resource('tags', 'TagController');
     Route::resource('categories', 'CategoryController');
+    Route::get('myTags','TagController@myTags')->name('tags.myTags');
 });
 
 Auth::routes();

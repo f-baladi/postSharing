@@ -17,6 +17,11 @@ class Tag extends Model
         return $this->belongsToMany(Post::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;

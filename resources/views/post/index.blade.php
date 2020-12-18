@@ -9,10 +9,18 @@
                     <div class="alert alert-info">{{session('status')}}</div>
                 @endif
 
-                <div class="card" style="text-align: center">
-                    <div class="card-header bg-light">{{ __('پست ها') }}</div>
+                <div class="card" >
+                    <div class="card-header bg-light mb-4 d-flex align-items-center justify-content-between">
+                        {{ __('پست ها') }}
 
-                    <div class="card-body">
+                        <div>
+                            <a href="{{route('posts.create')}}" class="btn btn-primary">{{"اضافه کردن"}}</a>
+                            <a href="{{route('tags.myTags')}}" class="btn btn-success">{{"مدیریت تگ ها"}}</a>
+                            <a href="{{route('categories.index')}}" class="btn btn-info">{{"مدیریت دسته بندی"}}</a>
+                        </div>
+                    </div>
+
+                    <div class="card-body " style="text-align: center">
                         <table class="table table-bordered table-hover">
                             <thead class="bg-info">
                             <th>{{'شناسه'}}</th>
