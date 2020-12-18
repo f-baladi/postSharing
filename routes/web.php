@@ -25,6 +25,7 @@ Route::group([
 ],function (){
     Route::resource('posts', 'PostController');
     Route::resource('tags', 'TagController');
+    Route::resource('categories', 'CategoryController');
 });
 
 Auth::routes();

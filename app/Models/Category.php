@@ -17,6 +17,11 @@ class Category extends Model
         return $this->belongsToMany(Post::class);
     }
 
+    public function image()
+    {
+        return $this->morphOne(Image::class, 'imageable');
+    }
+
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;

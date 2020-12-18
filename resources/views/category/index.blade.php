@@ -10,7 +10,7 @@
                 @endif
 
                 <div class="card" style="text-align: center">
-                    <div class="card-header bg-light">{{ __('تگ ها') }}</div>
+                    <div class="card-header bg-light">{{ __('دسته بندی ها') }}</div>
 
                     <div class="card-body">
                         <table class="table table-bordered table-hover">
@@ -18,16 +18,19 @@
                             <th>{{'شناسه'}}</th>
                             <th>{{'عنوان'}}</th>
                             <th>{{'slug'}}</th>
+                            <th>{{'عکس'}}</th>
                             <th>{{'عملیات'}}</th>
                             </thead>
-                            @foreach($tags as $tag)
+                            @foreach($categories as $category)
                                 <tbody>
-                                <td>{{$tag->id}}</td>
-                                <td>{{$tag->title}}</td>
-                                <td>{{$tag->slug}}</td>
+                                <td>{{$category->id}}</td>
+                                <td>{{$category->title}}</td>
+                                <td>{{$category->slug}}</td>
+                                <td><img src="{{$category->image->path}}" height="150px"/></td>
+
 
                                 <td >
-                                    <a class="btn btn-primary" href="{{route('tags.show',$tag->id)}}">نمایش پست ها</a>
+                                    <a class="btn btn-primary" href="{{route('categories.show',$category->id)}}"> نمایش پست ها</a>
                                 </td>
 
                                 </tbody>
@@ -35,7 +38,7 @@
                         </table>
                         <div class="mb-4 d-flex align-items-center justify-content-between" dir="ltr">
 
-                            {{$tags->links('pagination::bootstrap-4')}}
+                            {{$categories->links('pagination::bootstrap-4')}}
                             <a class="btn btn-info" href="{{route('posts.index')}}">{{ __('بازگشت') }}</a>
 
                         </div>

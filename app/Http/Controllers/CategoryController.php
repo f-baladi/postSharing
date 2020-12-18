@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::paginate(5);
+        return view('category.index',compact('categories'));
     }
 
     /**
@@ -46,7 +47,8 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $posts = $category->posts()->paginate(5);
+        return view('category.show',compact('posts'));
     }
 
     /**
