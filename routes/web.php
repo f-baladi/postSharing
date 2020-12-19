@@ -42,3 +42,9 @@ Route::get('/verifyMobile', 'Auth\MobileVerificationController@showVerifyForm');
 
 Route::get('post/{post}/publish' , 'PublishPostController@publish')->name('post.publish');
 Route::get('post/{post}/draft' , 'PublishPostController@draft')->name('post.draft');
+
+
+Route::get('test', function () {
+    $user = \App\Models\user::find(2);
+    return new \App\Mail\WelcomeMail($user);
+});
