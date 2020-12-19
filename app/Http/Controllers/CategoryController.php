@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 class CategoryController extends Controller
 {
     /**
@@ -25,7 +27,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('category.create');
     }
 
     /**
@@ -34,9 +36,20 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateCategoryRequest $request)
     {
-        //
+        $category = Category::create([
+            'user_id' => auth()->user()->id,
+            'title' => $request->title,
+        ]);
+        $fileName = str::random(5) .' '. $request->imageTitle;
+        $path = $request->file('image')->storePublicly('images');
+        $category->image()->create([
+            'title' => $fileName,
+            'path' => $path,
+        ]);
+
+        return redirect()->route('categories.myCategories')->with('status', 'دسته بندی با موفقیت اضافه شد.');
     }
 
     /**
@@ -59,7 +72,11 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        if ($category->user_id != Auth::id())
+            return redirect()->back()->with('status', 'شما اجازه دسترسی یه این صفحه را ندارید');
+
+        else
+            return view('category.edit', compact( 'category'));
     }
 
     /**
@@ -82,6 +99,16 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        if ($category->user_id != Auth::id())
+            return redirect()->back()->with('status', 'شما اجازه دسترسی یه این صفحه را ندارید');
+
+        $category->delete();
+        return redirect()->back()->with('status', 'دسته بندی با موفقیت حذف شد.');
+    }
+
+    public function myCategories()
+    {
+        $categories = auth()->user()->categories()->paginate(5);
+        return view('category.myCategories', compact('categories'));
     }
 }

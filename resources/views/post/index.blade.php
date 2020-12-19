@@ -16,7 +16,7 @@
                         <div>
                             <a href="{{route('posts.create')}}" class="btn btn-primary">{{"اضافه کردن"}}</a>
                             <a href="{{route('tags.myTags')}}" class="btn btn-success">{{"مدیریت تگ ها"}}</a>
-                            <a href="{{route('categories.index')}}" class="btn btn-info">{{"مدیریت دسته بندی"}}</a>
+                            <a href="{{route('categories.myCategories')}}" class="btn btn-info">{{"مدیریت دسته بندی"}}</a>
                         </div>
                     </div>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\MobileVerificationController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,7 @@ Route::group([
     Route::resource('tags', 'TagController');
     Route::resource('categories', 'CategoryController');
     Route::get('myTags','TagController@myTags')->name('tags.myTags');
+    Route::get('myCategories','CategoryController@myCategories')->name('categories.myCategories');
 });
 
 Auth::routes();
@@ -34,8 +36,8 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::post('/checkMobile', 'Auth\MobileVerificationController@checkMobile')->name('check.mobile');
-Route::get('/insertMobile', 'Auth\LoginController@showLoginForm');
-Route::post('/verifyMobile', 'Auth\MobileVerificationControllerr@verifyMobile')->name('verify.mobile');
+Route::get('/insertMobile', [MobileVerificationController::class, 'showLoginForm']);
+Route::post('/verifyMobile',[MobileVerificationController::class, 'verifyMobile'])->name('verify.mobile');
 Route::get('/verifyMobile', 'Auth\MobileVerificationController@showVerifyForm');
 
 Route::get('post/{post}/publish' , 'PublishPostController@publish')->name('post.publish');

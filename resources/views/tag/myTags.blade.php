@@ -12,7 +12,7 @@
 
                 <div class="card" >
                     <div class="card-header bg-light mb-4 d-flex align-items-center justify-content-between">
-                        {{ __('تگ ها') }}
+                        {{ __('تگ های من') }}
                         <div>
                             <a href="{{route('tags.create')}}" class="btn btn-primary">{{"اضافه کردن"}}</a>
                             <a href="{{route('posts.index')}}" class="btn btn-success">{{"مدیریت پست ها"}}</a>
@@ -41,7 +41,7 @@
                                     <form action="{{route('tags.destroy',$tag)}}" method="post" >
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger m-1" onclick="return confirm('از حذف کار مطمئن هستید؟')">حذف
+                                        <button class="btn btn-danger m-1" onclick="return confirm('از حذف تگ مطمئن هستید؟')">حذف
                                         </button>
                                     </form>
                                 </td>
