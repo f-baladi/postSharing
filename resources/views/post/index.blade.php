@@ -50,7 +50,12 @@
                                 <td class="d-flex flex-row">
                                     <a class="btn btn-primary" href="{{route('posts.show',$post->id)}}">نمایش</a>
                                     <span class="m-1"></span>
-                                    <a class="btn btn-danger" href="{{route('posts.destroy',$post->id)}}">حذف</a>
+                                    <form action="{{route('posts.destroy',$post)}}" method="post" >
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="btn btn-danger m-1" onclick="return confirm('از حذف پست مطمئن هستید؟')">حذف
+                                        </button>
+                                    </form>
                                 </td>
 
                                 </tbody>

@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendPostDeleteEmailJob;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
@@ -87,6 +89,14 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        if ($post->user_id != Auth::id())
+            return redirect()->back()->with('status', 'شما اجازه دسترسی یه این صفحه را ندارید');
+
+
+        $post->delete();
+
+        SendPostDeleteEmailJob::dispatch($post);
+
+        return redirect()->back()->with('status', 'پست با موفقیت حذف شد.');
     }
 }
