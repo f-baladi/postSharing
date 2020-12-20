@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8 " >
+            <div class="col-md-10 " >
 
                 @if(session('status'))
                     <div class="alert alert-info">{{session('status')}}</div>
@@ -32,7 +32,7 @@
                                 <td>{{$category->id}}</td>
                                 <td>{{$category->title}}</td>
                                 <td>{{$category->slug}}</td>
-                                <td><img src="{{asset($category->image->path)}}" height="150px"/></td>
+                                <td><img src="{{$category->image->url}}" height="150px"/></td>
 
 
                                 <td class="d-flex flex-row">

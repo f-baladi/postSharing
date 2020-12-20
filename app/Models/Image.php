@@ -29,5 +29,8 @@ class Image extends Model
         $this->attributes['alt'] = $this->attributes['title'];
     }
 
+    public function getUrlAttribute(){
+        return Storage::url($this->path);
 
+    }
 }
