@@ -17,6 +17,7 @@
                             <th>{{'نام'}}</th>
                             <th>{{'ایمیل'}}</th>
                             <th>{{'موبایل'}}</th>
+                            <th>{{'نقش'}}</th>
                             <th>{{'وضعیت'}}</th>
                             <th>{{'عملیات'}}</th>
                             </thead>
@@ -26,13 +27,20 @@
                                 <td><a style="color: black" href="{{route('admin.users.show',$user)}}">{{$user->name}}</a></td>
                                 <td>{{$user->email}}</td>
                                 <td>{{$user->mobile}}</td>
-                                <td id="activity">{{$user->isActive ? 'فعال' : 'غیرفعال'}}</td>
+                                <td>
+                                    @foreach ($user->roles as $role)
+                                        <span class="badge badge-secondary"> {{$role->name}} </span>
+
+                                @endforeach
+                                </td>
+{{--                                <td> <a href="{{route('admin.users.edit' , $user->id)}}"> @lang('users.edit') </a> </td>--}}
+                                <td id="activity_{{$user->id}}">{{$user->isActive ? 'فعال' : 'غیرفعال'}}</td>
                                 <td class="d-flex flex-row">
-{{--                                    <button class="btn btn-warning" onclick="activityUser()">تغییر وضعیت</button>--}}
-                                    <form action="{{route('admin.users.activity',$user)}}" method="post" >
-                                        @csrf
-                                        <button class="btn btn-warning m-1" onclick="return confirm('از تغییر وضعیت مطمئن هستید؟')">تغییر وضعیت</button>
-                                    </form>
+                                    <button class="btn btn-warning" onclick="activityUser({{$user->id}})">تغییر وضعیت</button>
+{{--                                    <form action="{{route('admin.users.activity',$user)}}" method="post" >--}}
+{{--                                        @csrf--}}
+{{--                                        <button class="btn btn-warning m-1" onclick="return confirm('از تغییر وضعیت مطمئن هستید؟')">تغییر وضعیت</button>--}}
+{{--                                    </form>--}}
 
                                     <form action="{{route('admin.users.destroy',$user)}}" method="post" >
                                         @csrf
@@ -51,24 +59,20 @@
         </div>
     </div>
 @endsection
-{{--@section('script')--}}
-{{--    <script>--}}
-{{--        $.ajaxSetup({--}}
-{{--            headers: {--}}
-{{--                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')--}}
-{{--            }--}}
-{{--        });--}}
+@section('script')
+    <script>
 
-{{--        function activityUser() {--}}
-{{--            $.ajax({--}}
-{{--                'method': 'post',--}}
-{{--                'url': '{{route('admin.users.activity',$user)}}',--}}
-{{--                success: function (response) {--}}
-{{--                    console.log(response)--}}
-{{--                    if (response.success)--}}
-{{--                        $('#activity').html(response.data.isActive ? 'فعال' : 'غیرفعال');--}}
-{{--                }--}}
-{{--            })--}}
-{{--        }--}}
-{{--    </script>--}}
-{{--@endsection--}}
+
+        function activityUser(id) {
+            $.ajax({
+                'method': 'post',
+                'url': '{{route('admin.users.activity')}}?id='+id+'&_token='+$('meta[name="csrf-token"]').attr('content'),
+                success: function (response) {
+                    console.log(response)
+                    if (response.success)
+                        $('#activity_'+id).html(response.data.isActive ? 'فعال' : 'غیرفعال');
+                }
+            })
+        }
+    </script>
+@endsection

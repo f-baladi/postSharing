@@ -11,23 +11,20 @@ class ActiveUserController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request, User $user)
+    public function __invoke(Request $request)
     {
-//        dd($request->all());
+        $user = User::find($request->get('id'));
         $user->update([
             'isActive' => !$user->isActive,
         ]);
 
-//        dd($user);
+        return response()->json([
+            'success' => true,
+            'data' => $user->toArray()
+        ]);
 
-        return redirect()->route('admin.users.index');
-
-//        return response()->json([
-//            'success' => true,
-//            'data' => $user->toArray()
-//        ]);
     }
 }
