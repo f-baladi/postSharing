@@ -20,6 +20,9 @@
                         <div class="card-text">
                             <a class="card-link" href="{{route('admin.roles.index')}}">لیست نقش ها</a>
                         </div>
+                        <div class="card-text">
+                            <a class="card-link" href="{{route('posts.index')}}">لیست پست ها</a>
+                        </div>
                 </div>
             </div>
         </div>

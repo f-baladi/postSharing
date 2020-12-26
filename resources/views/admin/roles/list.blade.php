@@ -47,10 +47,12 @@
 					</thead>
 					<tbody>
 						@forelse ($roles as $role)
+                            @if(!(!auth()->user()->hasRole('سوپر ادمین')&& $role->name == 'سوپر ادمین'))
 						<tr>
 							<td> {{$role->name}} </td>
 						<td> <a class="btn btn-info" href="{{route('admin.roles.edit' , $role->id)}}"> ویرایش </a> </td>
 						</tr>
+                            @endif
 						@empty
 						<p>
 							{{'نقشی تعریف نشده است'}}
