@@ -35,11 +35,13 @@
                         <div class="mb-4 d-flex align-items-center justify-content-between" dir="ltr">
                                 <a class="btn btn-info" href="{{route('posts.index')}}">{{ __('بازگشت') }}</a>
                             <div>
+                                @unlessrole('مهمان|نویسنده')
                                 @if ($post->status)
                                     <a class="btn btn-info" href="{{route('post.draft', $post)}}">{{ __('تبدیل به پیش نویس') }}</a>
                                 @else
                                     <a class="btn btn-success" href="{{route('post.publish',$post)}}">{{ __('تبدیل به انتشار') }}</a>
                                 @endif
+                                @endunlessrole
                             </div>
                         </div>
                     </div>

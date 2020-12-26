@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Mail;
 
 class PostController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Post::class, 'post');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -50,12 +55,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        if ($post->user_id == Auth::id())
         {
             return view('post.show', compact('post'));
         }
-        else
-            return view('viewer.show', compact('post'));
     }
 
     /**

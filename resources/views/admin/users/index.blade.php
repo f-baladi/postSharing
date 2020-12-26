@@ -41,6 +41,8 @@
                                     <button class="btn btn-warning" onclick="activityUser({{$user->id}})">تغییر وضعیت
                                     </button>
 
+                                    @if (!($user->hasRole('سوپر ادمین|ادمین') && auth()->user()->hasRole('ادمین')))
+
                                     <form action="{{route('admin.users.destroy',$user)}}" method="post">
                                         @csrf
                                         @method('DELETE')
@@ -48,6 +50,8 @@
                                                 onclick="return confirm('از حذف کاربر مطمئن هستید؟')">حذف
                                         </button>
                                     </form>
+
+                                    @endif
 
                                 </td>
 
