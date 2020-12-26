@@ -91,10 +91,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        if ($post->user_id != Auth::id())
-            return redirect()->back()->with('status', 'شما اجازه دسترسی یه این صفحه را ندارید');
-
-
         $post->delete();
 
         SendPostDeleteEmailJob::dispatch($post);

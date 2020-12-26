@@ -50,7 +50,9 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        //
+        if ($user->hasRole(['نویسنده'])) {
+            return true;
+        }
     }
 
     /**
@@ -62,7 +64,9 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        //
+        if ($user->hasRole(['نویسنده']) && $post->user_id == $user->id) {
+            return true;
+        }
     }
 
     /**
