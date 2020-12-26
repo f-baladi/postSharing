@@ -15,4 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('users','UserController');
 Route::post('users/isActive', 'ActiveUserController')->name('users.activity');
-
+Route::resource('roles', 'RoleController');

@@ -27,7 +27,11 @@ class DatabaseSeeder extends Seeder
         $role = Role::create(['name'=>'admin']);
         $user->assignRole($role);
 
-        User::factory(20)->create();
+        User::factory(20)->create()->each(function ($user){
+            $roleMehman = Role::create(['name'=>'مهمان']);
+            $user->assignRole($roleMehman);
+            });
+
         $categories = Category::factory(50)->create()->each(function ($category){
             Image::factory()->create(['imageable_type' => "App\Models\Category", 'imageable_id'=>$category->id]);
         });

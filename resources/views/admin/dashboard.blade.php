@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -13,7 +14,12 @@
                             {{ session('status') }}
                         </div>
                     @endif
+                        <div class="card-text">
                         <a class="card-link" href="{{route('admin.users.index')}}">لیست کاربران</a>
+                        </div>
+                        <div class="card-text">
+                            <a class="card-link" href="{{route('admin.roles.index')}}">لیست نقش ها</a>
+                        </div>
                 </div>
             </div>
         </div>

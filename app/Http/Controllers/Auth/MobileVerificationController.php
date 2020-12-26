@@ -15,7 +15,7 @@ class MobileVerificationController extends Controller
     public function checkMobile(LoginMobileRequest $request)
     {
         $mobile = $request->mobile;
-        $user = User::where('mobile', '=', $mobile )->first();
+        $user = User::where('mobile', $mobile )->first();
         if ($user === null) {
 
             $code = rand(10000,99999);

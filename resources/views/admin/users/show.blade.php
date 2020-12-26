@@ -27,6 +27,15 @@
             </tr>
 
             <tr>
+                <td>نقش ها:</td>
+                <td>
+                    @foreach ($user->roles as $role)
+                        <span class="badge badge-info"> {{$role->name}} </span>
+
+                    @endforeach</td>
+            </tr>
+
+            <tr>
                 <th colspan="2" style="text-align: left">
                     <a href="{{route('admin.users.index')}}" class="btn btn-info">بازگشت</a>
                 </th>

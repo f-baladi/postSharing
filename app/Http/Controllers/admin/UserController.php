@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -15,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::with('roles')->get();
         return  view('admin.users.index', compact('users'));
     }
 
@@ -54,24 +56,30 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param User $user
+     * @return void
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $permissions = Permission::all();
+        $roles = Role::all();
+        $user->load('roles', 'permissions');
+        return view('admin.users.edit',compact('permissions','roles','user'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $user->syncPermissions([$request->permissions]);
+        $user->syncRoles([$request->roles]);
+
+        return redirect()->route('admin.users.index');
     }
 
     /**
